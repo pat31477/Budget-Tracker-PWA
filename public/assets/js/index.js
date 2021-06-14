@@ -1,7 +1,7 @@
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("/service-worker.js").then((reg) => {
-      console.log("Service worker registered.", reg);
+      console.log("Registration of service worker is complete.", reg);
     });
   });
 }
@@ -33,7 +33,7 @@ function createTransactionForm() {
    const validate = () => {
  
     if (nameEl.value === "" || amountEl.value === "") {
-      showError("Missing Information");
+      showError("Enter the required information!");
       return false;
     }
     showError("");
@@ -114,7 +114,7 @@ function sendTransaction(isAdding) {
     .create(transaction)
     .then((data) => {
       if (data.errors) {
-        transactionForm.showError("Missing Information");
+        transactionForm.showError("Enter the required information!");
       } else {
         transactionForm.clear();
       }
