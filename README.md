@@ -68,6 +68,12 @@ Heroku: https://rocky-reef-89782.herokuapp.com/
 
 -Morgan: handles the http request logger
 
+-Node.js
+
+-NPM modules
+
+-MongoDB
+
 ## License
 
 ![License](https://img.shields.io/badge/License%3A-MIT-green.svg)
