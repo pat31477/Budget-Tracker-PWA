@@ -1,7 +1,8 @@
+// register our service worker
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("/service-worker.js").then((reg) => {
-      console.log("Registration of service worker is complete.", reg);
+      console.log("Service worker registered.", reg);
     });
   });
 }
@@ -30,17 +31,18 @@ function createTransactionForm() {
     errorEl.textContent = message;
   };
 
-   const validate = () => {
- 
+  // return false if invalid and display validation message
+  const validate = () => {
+    // validate form
     if (nameEl.value === "" || amountEl.value === "") {
-      showError("Enter the required information!");
+      showError("Missing Information");
       return false;
     }
     showError("");
     return true;
   };
 
- 
+  // return transaction object from form input
   const transaction = () => {
     return {
       name: nameEl.value,
@@ -49,7 +51,7 @@ function createTransactionForm() {
     };
   };
 
- 
+  // clear form inputs
   const clear = () => {
     nameEl.value = "";
     amountEl.value = "";
@@ -83,7 +85,7 @@ function createTransactionApi() {
 
 function initTransactions() {
   transactionApi.fetchAll().then((data) => {
-  
+    // save db data on global variable
     transactions = data;
 
     renderTransactionsChart();
@@ -95,15 +97,14 @@ function sendTransaction(isAdding) {
     return;
   }
 
- 
+  // create record
   const transaction = transactionForm.transaction();
 
-  
+  // if subtracting funds, convert amount to negative number
   if (!isAdding) {
     transaction.value *= -1;
   }
 
-  
   // add to beginning of current array of data
   transactions.unshift(transaction);
 
