@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/budget-tracker-pwa',
+  process.env.MONGODB_URI || 'mongodb://localhost/rocky-reef',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -26,11 +26,8 @@ mongoose.connect(
   }
 );
 
-
 app.use(apiRoutes);
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
 });
-
-
