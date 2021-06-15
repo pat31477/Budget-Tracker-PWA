@@ -104,23 +104,26 @@ function sendTransaction(isAdding) {
   }
 
   
+  // add to beginning of current array of data
   transactions.unshift(transaction);
 
-    populateChart();
+  // re-run logic to populate ui with new record
+  populateChart();
   populateTable();
   populateTotal();
 
-    transactionApi
+  // also send to server
+  transactionApi
     .create(transaction)
     .then((data) => {
       if (data.errors) {
-        transactionForm.showError("Enter the required information!");
+        transactionForm.showError("Missing Information");
       } else {
         transactionForm.clear();
       }
     })
     .catch(() => {
-      
+      // fetch failed, so save in indexed db
       saveRecord(transaction);
       transactionForm.clear();
     });
@@ -133,7 +136,7 @@ function renderTransactionsChart() {
 }
 
 function populateTotal() {
-  
+  // reduce transaction amounts to a single total value
   const total = transactions.reduce((total, t) => {
     return total + parseInt(t.value);
   }, 0);
@@ -147,7 +150,7 @@ function populateTable() {
   tbody.innerHTML = "";
 
   transactions.forEach((transaction) => {
-    
+    // create and populate a table row
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${transaction.name}</td>
@@ -159,22 +162,24 @@ function populateTable() {
 }
 
 function populateChart() {
-  
+  // copy array and reverse it
   const reversed = transactions.slice().reverse();
   let sum = 0;
 
-    const labels = reversed.map((t) => {
+  // create date labels for chart
+  const labels = reversed.map((t) => {
     const date = new Date(t.date);
     return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
   });
 
- 
+  // create incremental values for chart
   const data = reversed.map((t) => {
     sum += parseInt(t.value);
     return sum;
   });
 
-    if (myChart) {
+  // remove old chart if it exists
+  if (myChart) {
     myChart.destroy();
   }
 
