@@ -1,6 +1,6 @@
 {
-    "name": "progressive-budget-app",
-    "short_name": "progressive-budget-app",
+    "name": "budget-tracker-pwa",
+    "short_name": "budget-tracker-app",
     "icons": [
         {
             "src": "icons/icon-192x192.png",

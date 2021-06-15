@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/budget',
+  process.env.MONGODB_URI || 'mongodb://localhost/rocky-reef-89782',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
