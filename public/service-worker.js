@@ -24,7 +24,7 @@ self.addEventListener("install", (evt) => {
 });
 
 self.addEventListener("activate", (evt) => {
-    evt.waitUntil(
+  evt.waitUntil(
     caches.keys().then((keyList) => {
       return Promise.all(
         keyList.map((key) => {
@@ -40,15 +40,13 @@ self.addEventListener("activate", (evt) => {
 });
 
 self.addEventListener("fetch", (evt) => {
-  
-  if (evt.request.url.includes("/api/") && evt.request.method === "GET") {
+    if (evt.request.url.includes("/api/") && evt.request.method === "GET") {
     evt.respondWith(
       caches
         .open(DATA_CACHE_NAME)
         .then((cache) => {
           return fetch(evt.request)
             .then((response) => {
-              
               if (response.status === 200) {
                 cache.put(evt.request, response.clone());
               }
@@ -56,18 +54,14 @@ self.addEventListener("fetch", (evt) => {
               return response;
             })
             .catch(() => {
-              
               return cache.match(evt.request);
             });
         })
         .catch((err) => console.log(err))
     );
-
-    
     return;
   }
-
-
+  
   evt.respondWith(
     caches.match(evt.request).then((response) => {
       return response || fetch(evt.request);

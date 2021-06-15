@@ -27,13 +27,11 @@ request.onsuccess = (event) => {
   }
 };
 
-
 function saveRecord(record) {
   const transaction = db.transaction("pending", "readwrite");
   const store = transaction.objectStore("pending");
   store.add(record);
 }
-
 
 function checkDatabase() {
   const transaction = db.transaction("pending", "readonly");
@@ -59,6 +57,5 @@ function checkDatabase() {
     }
   };
 }
-
 
 window.addEventListener("online", checkDatabase);
