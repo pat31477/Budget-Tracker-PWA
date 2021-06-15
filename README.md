@@ -24,13 +24,10 @@ Built in collaboration with:
 
 ## Demo
 
+![Screen Shot2](./images/FullScreenShot.png?raw=true "Screen Shot1")
+
 ![Demo](./images/FullDemo.gif?raw=true "Demo")
 
-  ![Screen Shot2](./images/MainPage.png?raw=true "Screen Shot2")
-
-  ![Screen Shot3](./images/Selection.png?raw=true "Screen Shot3")
-
-  ![Screen Shot4](./images/DashBoard.png?raw=true "Screen Shot4")
 
 ## Table of Contents
 
